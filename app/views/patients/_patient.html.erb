@@ -1,0 +1,23 @@
+<div class="bg-white rounded-2xl shadow-lg p-5 flex flex-col gap-4 hover:shadow-2xl transition duration-300">
+  <div class="flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <%= image_tag("default-avatar.jpg", alt: "Avatar", class: "w-16 h-16 rounded-full object-cover border-2 border-gray-200 shadow") %>
+      <div>
+        <h2 class="text-xl font-semibold text-gray-800"><%= patient.name %></h2>
+        <p class="text-sm text-gray-500">Age: <%= patient.age %> | <%= patient.gender %></p>
+        <p class="text-xs text-gray-400 mt-1"><%= truncate(patient.address, length: 40) %></p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-3 text-gray-500 text-lg">
+      <%= link_to patient_path(patient), class: "hover:text-blue-600", title: "View" do %>
+        <i class="fas fa-eye"></i>
+      <% end %>
+      <%= link_to edit_patient_path(patient), class: "hover:text-yellow-600", title: "Edit" do %>
+        <i class="fas fa-pen"></i>
+      <% end %>
+      <%= link_to patient_path(patient), method: :delete, data: { confirm: "Are you sure?" }, class: "hover:text-red-600", title: "Delete" do %>
+        <i class="fas fa-trash"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

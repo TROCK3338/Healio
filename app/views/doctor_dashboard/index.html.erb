@@ -1,0 +1,9 @@
+<h1>Doctor Dashboard</h1>
+
+<h2 class="text-xl font-bold mb-4">Patient Registrations Over Time</h2>
+<%= line_chart({ "2024-06-01" => 3, "2024-06-02" => 5, "2024-06-03" => 2 }) %>
+<div style="max-width: 700px;">
+  <%= line_chart @patient_data, xtitle: "Date", ytitle: "New Patients", library: {
+    title: { text: "Patient Registrations", x: -20 }
+  } %>
+</div>

@@ -1,0 +1,41 @@
+<%= form_with(model: patient, local: true, class: "space-y-6 max-w-xl mx-auto bg-white p-8 rounded shadow") do |form| %>
+  <% if patient.errors.any? %>
+    <div class="bg-red-100 text-red-700 p-4 rounded">
+      <h2 class="font-semibold mb-2"><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+      <ul class="list-disc ml-6">
+        <% patient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, class: "block font-medium mb-1" %>
+    <%= form.text_field :name, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div>
+    <%= form.label :age, class: "block font-medium mb-1" %>
+    <%= form.number_field :age, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div>
+    <%= form.label :gender, class: "block font-medium mb-1" %>
+    <%= form.select :gender, ["Male", "Female", "Other"], {}, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div>
+    <%= form.label :contact, class: "block font-medium mb-1" %>
+    <%= form.text_field :contact, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div>
+    <%= form.label :address, class: "block font-medium mb-1" %>
+    <%= form.text_area :address, rows: 3, class: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div>
+    <%= form.submit "Save", class: "bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700" %>
+  </div>
+<% end %>

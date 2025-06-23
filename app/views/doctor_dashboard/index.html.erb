@@ -1,9 +1,32 @@
-<h1>Doctor Dashboard</h1>
+<h1 class="text-2xl font-bold text-gray-800 mb-4">Doctor Dashboard</h1>
 
-<h2 class="text-xl font-bold mb-4">Patient Registrations Over Time</h2>
-<%= line_chart({ "2024-06-01" => 3, "2024-06-02" => 5, "2024-06-03" => 2 }) %>
-<div style="max-width: 700px;">
-  <%= line_chart @patient_data, xtitle: "Date", ytitle: "New Patients", library: {
-    title: { text: "Patient Registrations", x: -20 }
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow">
+  <h2 class="text-lg font-semibold text-gray-700 mb-4">Patient Registrations Over Time</h2>
+  <%= line_chart @patient_data, xtitle: "Date", ytitle: "Registrations", library: {
+    title: { text: "New Patient Trend", fontSize: 16 }
   } %>
+</div>
+
+<div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow">
+  <h2 class="text-lg font-semibold text-gray-700 mb-4">Registered Patients</h2>
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-100 text-sm text-gray-600">
+      <tr>
+        <th class="px-6 py-3 text-left">Name</th>
+        <th class="px-6 py-3 text-left">Age</th>
+        <th class="px-6 py-3 text-left">Gender</th>
+        <th class="px-6 py-3 text-left">Contact</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-100 text-sm text-gray-700">
+      <% Patient.order(created_at: :desc).each do |patient| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap"><%= patient.name %></td>
+          <td class="px-6 py-4 whitespace-nowrap"><%= patient.age %></td>
+          <td class="px-6 py-4 whitespace-nowrap capitalize"><%= patient.gender %></td>
+          <td class="px-6 py-4 whitespace-nowrap"><%= patient.contact %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
